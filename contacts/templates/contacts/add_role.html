@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Uliza Roles {% endblock %}
+{% block content %}
+
+<div class='center'>
+    <h1>Add a new Role</h1>
+
+   <!-- <form method='post' action='http://0.0.0.0:3000/api/v1/content/roles/'>-->
+	<form method='post' action='/roles/add/' >
+	{% csrf_token %}
+	{{ form.as_p }}
+<!--	<div>
+            <label>Role</label>
+            <input name="name" type="text"/>
+	</div>
+	<div>
+	    <label>Description</label>
+	    <input name="description" type="text"></input>
+	</div>-->
+        <input type="submit" value="submit"/>
+    </form>
+</div>
+
+{% endblock %}

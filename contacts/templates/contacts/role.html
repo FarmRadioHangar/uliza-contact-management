@@ -4,11 +4,24 @@
 
 {% block content %}
 
-There are currently no Roles, please add a few
+<div id="role-entries" class="content">
 
-<!-- Colored FAB button with ripple -->
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">
-  <i class="material-icons">+</i>
-</button>
+    {% for role in m_role_list %}
+
+        <p>
+
+            {{ role.name }} {{role.description}}
+
+        </p>
+
+    {% endfor %}
+
+
+    <!-- Colored FAB button with ripple -->
+    <button onclick="location.href='add'" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">
+        <i class="material-icons">+</i>
+    </button>
+
+</div>
 
 {% endblock %}
