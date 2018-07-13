@@ -5,17 +5,40 @@
 {% block content %}
 
 <div id="role-entries" class="content">
+   
+    {% if m_role_list %}
+ 
+    <table class="role-table">
 
-    {% for role in m_role_list %}
+	<tr>
 
-        <p>
+	    <th> Role </th>
+	    <th> Description </th>
 
-            {{ role.name }} {{role.description}}
+	</tr>
 
-        </p>
+	<tbody>
 
-    {% endfor %}
+    	    {% for role in m_role_list %}
 
+        	<tr>
+
+		    <td> {{ role.name }}  </td>
+		    <td> {{ role.description }} </td>
+
+	        </tr>
+
+            {% endfor %}
+
+	</tbody>
+
+    </table>
+
+    {% else %}
+
+	<p>No roles to display. Check your server connection or Add new roles</p>
+
+    {% endif %}
 
     <!-- Colored FAB button with ripple -->
     <button onclick="location.href='add'" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">

@@ -6,3 +6,6 @@ class RoleForm(forms.Form):
 
 class DetailForm(forms.Form):
 	name = forms.CharField(widget=forms.TextInput)
+
+class Contact(forms.Form):
+	pass

@@ -4,11 +4,27 @@
 
 {% block content %}
 
-There are currently no contacts, please add a few    
+    {% if m_contact_list %}
+	
+	<table>
 
-<!-- Colored FAB button with ripple -->
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">
-  <i class="material-icons">+</i>
-</button>
+	{% for contacts in m_contact_list.items %}
+
+	    <p>{{ key }} {{ value }}</p>
+
+	{% endfor %}
+
+	</table>	
+
+    {% else %}
+
+        <p>There are currently no contacts. Please check your server connection or Add new contacts</p> 
+
+    {% endif %}   
+
+    <!-- Colored FAB button with ripple -->
+    <button onclick="location.href='add'" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">
+        <i class="material-icons">+</i>
+    </button>
 
 {% endblock %}

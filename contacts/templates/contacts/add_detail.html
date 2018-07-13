@@ -6,11 +6,11 @@
 
     <h1>Add new Detail</h1>
 
-    <form method='post' action='http://0.0.0.0:8000/api/v1/content/details/'>
+    <form method='post' action='details/add/'>
 
         <label>Detail</label>
-
-        <input name="name" type='text'/>
+	{% csrf_token %}
+        {{ form.as_p }}
 
         <input type='submit' value='submit'/>
 

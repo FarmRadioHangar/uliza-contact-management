@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from .forms import RoleForm, DetailForm
 from .models import Role as RoleModel
 from collections import namedtuple
+import logging
 import requests
 import json
 
@@ -20,21 +21,28 @@ def home(request):
 def role(request):
 	template = loader.get_template('contacts/role.html')
 	role_url = url + 'roles/'
-	response = requests.get(role_url)
-	#role_list = json.loads(response.content, object_hook=lambda d:namedtuple('R', d.keys())(*d.values()))
-        #m_list = {'listener', 'broadcastor', 'others'}
-	role_list = json.loads(response.content)
-	context = Context({'m_role_list': role_list})
-	return HttpResponse(template.render(context, request))
+	try:
+		response = requests.get(role_url)
+		#role_list = json.loads(response.content, object_hook=lambda d:namedtuple('R', d.keys())(*d.values()))
+       		#m_list = {'listener', 'broadcastor', 'others'}
+		role_list = json.loads(response.content)
+		context = Context({'m_role_list': role_list})
+		return HttpResponse(template.render(context, request))
+	except requests.ConnectionError:
+		logging.exception('Server connection failed')
+		return HttpResponse(template.render(None, request))
 
 def add_role(request):
-	role_post_url = url + 'roles/'
+	role_url = url + 'roles/'
 	if request.method == 'POST':
 		form = RoleForm(request.POST)
 		if form.is_valid():# Validate form data
 			#name = form.cleaned_data['name']
 			#desc = form.cleaned_data['description']
-			requests.post(role_post_url, form.cleaned_data)
+			try:
+				requests.post(role_url, form.cleaned_data)
+			except requests.ConnectionError as ex:
+				logging.exception('Server connection failed')
 	else:
 		form = RoleForm()
 	return render(request, 'contacts/add_role.html', {'form':form})
@@ -42,30 +50,46 @@ def add_role(request):
 def detail(request):
 	template = loader.get_template('contacts/detail.html')
 	detail_url = url + 'details/'
-	response = requests.get(detail_url)
-	detail_list = json.loads(response.content)
-	context = Context({'m_detail_list': detail_list})
-	return HttpResponse(template.render(context, request))
+	try:
+		response = requests.get(detail_url)
+		detail_list = json.loads(response.content)
+		context = Context({'m_detail_list': detail_list})
+		return HttpResponse(template.render(context, request))
+	except requests.ConnectionError:
+		logging.exception('Server connection failed')
+		return HttpResponse(template.render(None, request))
 
 def add_detail(request):
-	detail_post_url = url + 'details/'
+	detail_url = url + 'details/'
 	if request.method == 'POST':
-		form = DetailForm(request.POST)
-		if form.is_valid(): #Validate data
+		form1 = DetailForm(request.POST)
+		if form1.is_valid(): #Validate data
 			#Post to coresponding api
-			requests.post(detail_post_url, form.cleaned_data)
+			try:
+				requests.post(detail_url, form1.cleaned_data)
+			except requests.ConnectionError:
+				logging.exception('Server connection failed')
 	else:
-		form = DetailForm
-	return render(request, 'contacts/add_detail.html', {'form':form})
+		form1 = DetailForm
+	return render(request, 'contacts/add_detail.html', {'form':form1})
 
 def contact(request):
 	template = loader.get_template('contacts/contact.html')
-	return HttpResponse(template.render(None, request))
+	contact_url = url + 'contact_details/'
+	try:
+		response = requests.get(contact_url)
+		contact_list = json.loads(response.content)
+		context = Context({'m_contact_list', request})
+		return HttpResponse(template.render(context, request))
+	except requests.ConnectionError:
+		logging.exception('Server connection failed')
+		return HttpResponse(template.render(None, request))
 
 def add_contact(request):
 	template = loader.get_template('contacts/add_contact.html')
-	if request.method == 'post':
-		return HttpResponseRedirect(reverse('uliza-contact'))
+	contact_url = url + 'contact_details/'
+	#if request.method == 'POST':
+	#	return HttpResponseRedirect(reverse('uliza-contact'))
 	return HttpResponse(template.render(None, request))
 
 

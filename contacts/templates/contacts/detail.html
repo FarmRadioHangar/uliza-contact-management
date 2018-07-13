@@ -5,6 +5,7 @@
 {% block content %}
 
 <div id="detail-entries" class="content">
+    {% if m_detail_list %}
 
     {% for detail in m_detail_list %}
 
@@ -15,6 +16,12 @@
         </p>
 
     {% endfor %}
+ 
+    {% else %}
+
+	<p> No details to display. Please check your server connection or Add new details</p>
+
+    {% endif %}
 
     <!-- Colored FAB button with ripple -->
     <button onclick="location.href='add'" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" style="position:absolute;bottom:25%;right:15%;max-width:25%;z-index:1001;background-color:green;">
