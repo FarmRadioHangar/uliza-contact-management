@@ -19,12 +19,12 @@
 
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #008000">
         <div id="msidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="roles">Roles</a>
-            <a href="details">Details</a>
-            <a href="contacts">Contacts</a>
+            <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>-->
+            <a href="{% url 'uliza-role' %}">Roles</a>
+            <a href="{% url 'uliza-detail' %}">Details</a>
+            <a href="{% url 'uliza-contact' %}">Contacts</a>
         </div>
-        <span style="font-size:30px;cursor:pointer;position:fixed;padding-top:15px;" onclick="openNav()">&#9776;</span>
+        <!--<span style="font-size:30px;cursor:pointer;position:fixed;padding-top:15px;" onclick="openNav()">&#9776;</span>
         <script>
             function openNav() {
 	        var mNav = document.getElementById("msidenav");
@@ -36,12 +36,12 @@
 	        document.getElementById("msidenav").style.width = "0";
 	        document.getElementById("content-block").style.padding = "10px 10px"
 	        }
-        </script>
+        </script>-->
     </nav>
 	
     <div class="content-block">
         {% block content %}{% endblock %}
-    </div
+    </div>
 
 </div>
     

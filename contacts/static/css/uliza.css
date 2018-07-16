@@ -1,5 +1,5 @@
 body {
-    padding: 1px 10px 10px 10px;
+    padding: 0.2% 1% 1% 1%;
     font-family: "Lato", sans-serif;
     transition: background-color .5s;
 }
@@ -11,28 +11,30 @@ div.navbar {
 
 .sidenav {
     height: 100%;
-    width: 0;
+    width: 16%;
     position: fixed;
     z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
+    top: 5.5%;
+    left: 1%;
+    background-color: #f2f2f2;
     overflow-x: hidden;
-    transition: 0.5s;
+    /*transition: 0.5s;*/
     padding-top: 60px;
+    line-height: 100%;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 10% 10% 10% 25%;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 100%;
+    color: green;
     display: block;
     transition: 0.3s;
+    size: 20%;
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: black;
 }
 
 .sidenav .closebtn {
@@ -48,11 +50,33 @@ div.navbar {
     .sidenav a {font-size: 18px;}
 }
 
+.content-block {
+    padding-left: 18%;
+}
+
 .center {
-    margin: auto;
-    width: 50%;
+    margin-left: auto%;
+    width: 100%;
     border: 0px solid green;
-    padding 10px, 10px;
+    padding 1%, 1%;
     text-align: center;
 }
 
+.contact-box {
+    float: left;
+    width: 50%;
+    height: 95%;
+   /* border: 3px solid green;*/
+    margin: 0 auto;
+}
+
+#contact-form {
+    width: 68%;
+}
+
+#contact-attributes {
+    width: 30%;
+    float: right;
+    background-color: #f2f2f2;
+    text-align: center;
+}

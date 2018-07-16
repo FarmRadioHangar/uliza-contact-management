@@ -2,17 +2,26 @@
 {% block title %} Uliza Contacts {% endblock %}
 {% block content %}
 
-<div class='form'>
+<div class='contact-box' id='contact-form'>
    
-    <h1>Add a new Contact</h1>
+    <h1>Add new Contact</h1>
 
     <form method='post' action='contacts/add/'>
 	
-	<button onclick=''>Add attribute</button>
+	<!--<input type='submit' value='submit'/>-->
 
-        <!--<input type='submit' value='submit'/>-->
 
     </form>
+
+</div>
+
+<div class='contact-box' id='contact-attributes'>
+
+    <h1>Contact Attributes</h1>
+
+<div id="attribute"></div>
+
+    <button>Add attribute(s)</button>
 
 </div>
 
